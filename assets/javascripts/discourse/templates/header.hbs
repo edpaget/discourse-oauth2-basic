@@ -7,7 +7,7 @@
     <div class='panel clearfix'>
       {{#unless currentUser}}
         {{#if showSignUpButton}}
-          <a href="https://api.flair.co/user/register?reg_next=https%3A//api.flair.co/oauth/authorize%3Fclient_id%3DJTc3esCHgFFq3nGzhrq45hlSODUncSGcT9TCBReQ%26redirect_uri%3Dhttps%253A%252F%252Fforum.flair.co%252Fauth%252Foauth2_basic%252Fcallback%26response_type%3Dcode" class="btn-primary btn-small login-button">Sign Up</a>
+          <button data-uri="https://api.flair.co/user/register?reg_next=https%3A//api.flair.co/oauth/authorize%3Fclient_id%3DJTc3esCHgFFq3nGzhrq45hlSODUncSGcT9TCBReQ%26redirect_uri%3Dhttps%253A%252F%252Fforum.flair.co%252Fauth%252Foauth2_basic%252Fcallback%26response_type%3Dcode" class="btn-primary btn-small login-button" onclick="window.open(this.dataset.uri, '_blank)', 'menubar=no,status=no,height=400,width=800')">Sign Up</button>
         {{/if}}
         {{d-button action="showLogin" class="btn-primary btn-small login-button" icon="user" label="log_in"}}
       {{/unless}}
