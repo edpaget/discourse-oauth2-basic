@@ -94,6 +94,8 @@ auth_provider title_setting: "oauth2_button_title",
               authenticator: OAuth2BasicAuthenticator.new('oauth2_basic'),
               message: "OAuth2"
 
+register_asset "javascripts/discourse/templates/header.hbs"
+
 register_css <<CSS
 
   button.btn-social.oauth2_basic {

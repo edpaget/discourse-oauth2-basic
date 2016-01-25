@@ -1,0 +1,66 @@
+
+<div class='wrap'>
+  <div class='contents clearfix'>
+    {{home-logo minimized=showExtraInfo}}
+    {{plugin-outlet "header-after-home-logo"}}
+
+    <div class='panel clearfix'>
+      {{#unless currentUser}}
+        {{#if showSignUpButton}}
+          <a href="https://api.flair.co/user/register?reg_next=https%3A//api.flair.co/oauth/authorize%3Fclient_id%3DJTc3esCHgFFq3nGzhrq45hlSODUncSGcT9TCBReQ%26redirect_uri%3Dhttps%253A%252F%252Fforum.flair.co%252Fauth%252Foauth2_basic%252Fcallback%26response_type%3Dcode" class="btn-primary btn-small login-button">Sign Up</a>
+        {{/if}}
+        {{d-button action="showLogin" class="btn-primary btn-small login-button" icon="user" label="log_in"}}
+      {{/unless}}
+      <ul class='icons clearfix' role='navigation'>
+        {{#if currentUser}}
+          {{plugin-outlet "header-before-notifications"}}
+        {{/if}}
+
+        {{#header-dropdown iconId="search-button"
+                           icon="search"
+                           action="toggleSearch"
+                           toggleVisible=searchVisible
+                           mobileAction="fullPageSearch"
+                           loginAction="showLogin"
+                           title="search.title"
+                           path="/search"}}
+        {{/header-dropdown}}
+
+        {{#header-dropdown iconId="toggle-hamburger-menu"
+                           icon="bars"
+                           toggleVisible=hamburgerVisible
+                           loginAction="showLogin"
+                           title="hamburger_menu"}}
+          {{#if flaggedPostsCount}}
+            <a href='/admin/flags/active' title='{{i18n 'notifications.total_flagged'}}' class='badge-notification flagged-posts'>{{flaggedPostsCount}}</a>
+          {{/if}}
+        {{/header-dropdown}}
+
+        {{#if currentUser}}
+          {{#header-dropdown iconId="current-user"
+                             class="current-user"
+                             showUser="true"
+                             toggleVisible=userMenuVisible
+                             loginAction="showLogin"
+                             title="user.avatar.header_title"}}
+            {{#if currentUser.unread_notifications}}
+              <a href {{action "showUserMenu"}} class='badge-notification unread-notifications'>{{currentUser.unread_notifications}}</a>
+            {{/if}}
+            {{#if currentUser.unread_private_messages}}
+              <a href {{action "showUserMenu"}} class='badge-notification unread-private-messages'>{{currentUser.unread_private_messages}}</a>
+            {{/if}}
+            {{plugin-outlet "header-notifications"}}
+          {{/header-dropdown}}
+        {{/if}}
+      </ul>
+        {{plugin-outlet "header-before-dropdowns"}}
+        {{user-menu visible=userMenuVisible logoutAction="logout"}}
+        {{hamburger-menu visible=hamburgerVisible showKeyboardAction="showKeyboardShortcutsHelp"}}
+        {{search-menu visible=searchVisible}}
+    </div>
+
+    {{#if showExtraInfo}}
+      {{header-extra-info topic=topic}}
+    {{/if}}
+  </div>
+</div>
