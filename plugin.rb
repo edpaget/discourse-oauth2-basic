@@ -103,3 +103,8 @@ register_css <<CSS
   }
 
 CSS
+
+after_initialize do
+  require 'omniauth'
+  OmniAuth.config.full_host = 'https://api.flair.co'
+end
