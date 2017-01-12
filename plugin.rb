@@ -106,5 +106,5 @@ CSS
 
 after_initialize do
   require 'omniauth'
-  OmniAuth.config.full_host = 'https://api.flair.co'
+  OmniAuth.config.full_host = 'https://forum.flair.co'
 end
